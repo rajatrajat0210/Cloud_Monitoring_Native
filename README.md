@@ -1,3 +1,6 @@
+![image alt](https://github.com/rajatrajat0210/Cloud_Monitoring_Native/blob/master/cloud-monitoring-tool.jpg?raw=true)
+![image alt](https://github.com/rajatrajat0210/Cloud_Monitoring_Native/blob/master/docker-image.jpg?raw=true)
+![image alt](https://github.com/rajatrajat0210/Cloud_Monitoring_Native/blob/master/cloud-docker.jpg?raw=true)
 Cloud Native Resource Monitoring Python App on Kubernetes
 What You’ll Learn 🤯
 Create a monitoring application in Python using Flask and psutil.
@@ -142,8 +145,6 @@ Copy
 Edit
 kubectl port-forward service/my-flask-service 5000:5000
 Open http://localhost:5000.
-![image alt]()
-![image alt]()
-![image alt]()
+
 
 
