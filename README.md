@@ -142,4 +142,8 @@ Copy
 Edit
 kubectl port-forward service/my-flask-service 5000:5000
 Open http://localhost:5000.
+![image alt]()
+![image alt]()
+![image alt]()
+
 
