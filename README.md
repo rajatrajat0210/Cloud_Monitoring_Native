@@ -19,28 +19,29 @@ Project Breakdown
 Part 1: Deploy the Flask Application Locally
 Clone the Repository
 
-bash
+```bash
 Copy
 Edit
 git clone <repository_url>
 cd <project_directory>
 Install Dependencies Install the required libraries:
+```
 
-bash
+```bash
 Copy
 Edit
 pip3 install -r requirements.txt
 Run the Application Start the Flask server:
-
-bash
+```
+```bash
 Copy
 Edit
 python3 app.py
 Open your browser and navigate to: http://localhost:5000.
-
+```
 Part 2: Dockerize the Flask Application
 Create a Dockerfile Add the following Dockerfile to the project root:
-
+```
 dockerfile
 Copy
 Edit
@@ -53,43 +54,42 @@ ENV FLASK_RUN_HOST=0.0.0.0
 EXPOSE 5000
 CMD ["flask", "run"]
 Build the Docker Image
-
-bash
+```
+```bash
 Copy
 Edit
 docker build -t <image_name> .
 Run the Docker Container
-
-bash
+```
+```bash
 Copy
 Edit
 docker run -p 5000:5000 <image_name>
 Access the app at http://localhost:5000.
-
+```
 Part 3: Push Docker Image to AWS ECR
 Create an ECR Repository Use the following Python script to create a repository:
-
+```
 python
 Copy
 Edit
 import boto3
-
 ecr_client = boto3.client('ecr')
 response = ecr_client.create_repository(repositoryName='my-ecr-repo')
 print(response['repository']['repositoryUri'])
 Push the Docker Image to ECR Replace <ecr_repo_uri> with the URI from the script and run:
-
-bash
+```
+```bash
 Copy
 Edit
 docker tag <image_name> <ecr_repo_uri>:latest
 docker push <ecr_repo_uri>:latest
 Part 4: Deploy the App on Kubernetes (EKS)
 Set Up EKS Cluster
-
+```
 Create an EKS cluster and a node group (refer to AWS documentation for setup).
 Create Deployment and Service Use the following Python script (eks.py):
-
+```
 python
 Copy
 Edit
@@ -129,22 +129,22 @@ service = client.V1Service(
 client.AppsV1Api(api_client).create_namespaced_deployment(namespace="default", body=deployment)
 client.CoreV1Api(api_client).create_namespaced_service(namespace="default", body=service)
 Update <ecr_repo_uri> with your ECR image URI.
-
+```
 Verify Deployment Run the following commands:
 
-bash
+```bash
 Copy
 Edit
 kubectl get deployment -n default
 kubectl get service -n default
 kubectl get pods -n default
 Access the App Forward the service port:
-
-bash
+```
+```bash
 Copy
 Edit
 kubectl port-forward service/my-flask-service 5000:5000
 Open http://localhost:5000.
-
+```
 
 
